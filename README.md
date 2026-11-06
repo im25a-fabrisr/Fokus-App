@@ -14,6 +14,18 @@ Eine Windows-App für konzentrierte Lernphasen. Erster Prototyp mit C#, .NET 10 
 
 Die Sperre ist eine Fokushilfe: Task-Manager und Windows bleiben zugänglich. Während die App beendet ist, kann sie keine Programme minimieren. Programme mit höheren Rechten können möglicherweise nicht erfasst werden. Webseiten, Benachrichtigungssteuerung, Pausenautomatik und Schul-WLAN-Erkennung sind noch nicht implementiert. Wähle keinen kompletten Browser, wenn du ihn zum Lernen brauchst.
 
+## Wie ein normales Windows-Programm starten
+
+Auf diesem Laptop gibt es auf dem Desktop und im Startmenü eine Verknüpfung **Fokus-App** mit eigenem Symbol. Beide öffnen direkt die Windows-App, ohne Befehlsfenster. Die veröffentlichte Version bringt die benötigte .NET-Laufzeit mit.
+
+Die Verknüpfungen zeigen auf `artifacts\windows\Fokus-App.exe` im Projektordner. Diesen Ordner deshalb nicht verschieben oder löschen. Nach einem Verschieben lassen sich die Verknüpfungen erneut anlegen:
+
+```powershell
+.\tools\Install-Shortcuts.ps1
+```
+
+Das Skript erstellt die Verknüpfungen für den aktuellen Benutzer; ein systemweites Installationsprogramm ist noch nicht enthalten. Das App-Symbol liegt als SVG und mehrstufige ICO-Datei unter `src/Fokus.App/Assets`. Unter Windows kann es mit `tools/New-AppIcon.ps1` neu erzeugt werden.
+
 ## Entwickeln und starten
 
 Voraussetzung: Windows und .NET 10 SDK (siehe [Microsofts Installationsanleitung](https://learn.microsoft.com/dotnet/core/install/windows)).
@@ -42,4 +54,4 @@ Die Prüfungen testen Ablauf, Abbruchverzögerung und Wiederherstellung nach Neu
 
 Die ursprüngliche Beschreibung steht in [LilErklärung.md](LilErklärung.md).
 
-Lokal kannst du auch Start.cmd doppelt anklicken. Es startet die gebaute App oder verwendet das vorhandene SDK. Build-Ausgaben und das lokale SDK werden nicht auf GitHub hochgeladen.
+Für die Entwicklung bleibt Start.cmd verfügbar. Im Alltag die Desktop- oder Startmenü-Verknüpfung verwenden. Build-Ausgaben, lokale Verknüpfungen und das lokale SDK werden nicht auf GitHub hochgeladen.
