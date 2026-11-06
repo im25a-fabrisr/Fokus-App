@@ -1,0 +1,18 @@
+name: Windows build
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Check focus sessions
+        run: dotnet run --project tests/Fokus.Checks
+      - name: Build Windows app
+        run: dotnet build src/Fokus.App -c Release
